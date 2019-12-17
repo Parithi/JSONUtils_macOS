@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -673,7 +674,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="JSONUtils" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -700,14 +701,65 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
-        <!--View Controller-->
+        <!--JSON Utilities-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="JSON Utilities" id="XfG-lQ-9wD" customClass="ViewController" customModule="JSONUtils" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PsN-GA-Hg4">
+                                <rect key="frame" x="0.0" y="53" width="480" height="217"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="9y8-OZ-mzP">
+                                    <rect key="frame" x="0.0" y="0.0" width="480" height="217"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" allowsUndo="YES" spellingCorrection="YES" smartInsertDelete="YES" id="4Hi-0V-4my">
+                                            <rect key="frame" x="0.0" y="0.0" width="480" height="217"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="480" height="217"/>
+                                            <size key="maxSize" width="480" height="10000000"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="cxI-HK-G0p">
+                                    <rect key="frame" x="-100" y="-100" width="240" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="gPu-1P-vz5">
+                                    <rect key="frame" x="464" y="0.0" width="16" height="217"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7cd-4a-7kF">
+                                <rect key="frame" x="10" y="9" width="460" height="32"/>
+                                <buttonCell key="cell" type="push" title="Unescape" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zMY-f4-dfE">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="actionClicked:" target="XfG-lQ-9wD" id="hsx-V3-aV7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="PsN-GA-Hg4" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="AWv-RA-ylU"/>
+                            <constraint firstItem="7cd-4a-7kF" firstAttribute="top" secondItem="PsN-GA-Hg4" secondAttribute="bottom" constant="16" id="BW1-OF-kmP"/>
+                            <constraint firstAttribute="bottom" secondItem="7cd-4a-7kF" secondAttribute="bottom" constant="16" id="E3X-8y-FzM"/>
+                            <constraint firstAttribute="trailing" secondItem="7cd-4a-7kF" secondAttribute="trailing" constant="16" id="Ns8-Jj-MLN"/>
+                            <constraint firstItem="7cd-4a-7kF" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="16" id="RbV-Zx-Itr"/>
+                            <constraint firstItem="PsN-GA-Hg4" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="p3g-7X-Jf7"/>
+                            <constraint firstAttribute="trailing" secondItem="PsN-GA-Hg4" secondAttribute="trailing" id="yGy-a7-yua"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="actionButton" destination="7cd-4a-7kF" id="6PF-Pj-9Ou"/>
+                        <outlet property="codeTextView" destination="4Hi-0V-4my" id="xUE-35-3AP"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
